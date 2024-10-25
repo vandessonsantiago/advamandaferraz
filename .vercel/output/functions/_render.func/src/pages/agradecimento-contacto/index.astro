@@ -1,0 +1,26 @@
+---
+import "@styles/Global.scss"; // Importa o arquivo de estilo no contexto do Astro
+import CpFtDefault from "@components/astro/CpFtDefault.astro";
+import CpHdLandpages from "@components/astro/CpHdLandpages.astro";
+import CpAgradecimento from "@components/react/CpAgradecimento.jsx"
+---
+
+<html lang="PT-br">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/ico" href="/icon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} /> <!-- Usando Astro.generator no .astro -->
+    <title>Políticas e Privacidade | Advogada Amanda Ferraz</title>
+    <meta name="description" content="Advogada Amanda Ferraz atua predominantemente nas áreas de Nacionalidade Portuguesa, Vistos de Residência, Regularização de Imigrantes em território Português e Direito Imobiliário.">
+  </head>
+  <body class="relative">
+    <main>
+      <section class="min-h-screen bg-gradient-to-t from-[#6c7c77] to-[#7f948e]">
+        <CpHdLandpages />
+        <CpAgradecimento client:load /> 
+      </section>
+    </main>
+    <CpFtDefault />
+  </body>
+</html>

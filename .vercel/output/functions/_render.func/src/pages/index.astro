@@ -1,0 +1,206 @@
+---
+import CpAjuda from "@components/astro/CpAjuda.astro";
+import CpBanner from "@components/astro/CpBanner.astro";
+import CpBlog from "@components/astro/CpBlog.astro";
+import CpConduta from "@components/astro/CpConduta.astro";
+import CpContactos from "@components/astro/CpContactos.astro";
+import CpFtDefault from "@components/astro/CpFtDefault.astro";
+import CpHdDefault from "@components/astro/CpHdDefault.astro";
+import CpHero from "@components/astro/CpHero.astro"
+import CpMentoria from "@components/astro/CpMentoria.astro";
+import CpServices from "@components/astro/CpServices.astro";
+import CpSobre from "@components/astro/CpSobre.astro";
+import LayoutDefault from "@layouts/LayoutDefault.astro";
+---
+
+<LayoutDefault>
+	<main>
+	    <section class="overflow-hidden min-h-screen bg-gradient-to-t from-[#6c7c77] to-[#7f948e] relative">
+	    <CpBanner />
+	    <CpHdDefault />
+	    <CpHero/>
+	    </section>
+		<section class="overflow-hidden min-h-screen relative">
+			<div id="condutas" class="section absolute top-0 right-0"></div>
+			<CpConduta />	
+		</section>	
+		<section class="min-h-screen relative sectionEf">
+		    <CpServices />
+            <div class="spotlight"></div>
+		    <div id="services" class="section absolute top-0 right-0"></div>
+		</section>
+		<section class="min-h-screen relative">
+		    <div id="mentoria" class="section absolute top-0 right-0"></div>
+		    <CpMentoria />
+		</section>
+		<section class="min-h-screen relative">
+			<div id="sobre" class="section absolute top-0 right-0"></div>
+		  <CpSobre />
+		</section>
+    <section class="hidden min-h-screen bg-gradient-to-t from-[#6c7c77] to-[#7f948e] relative">
+			<div id="blog" class="section absolute top-0 right-0"></div>
+			<CpBlog />
+		</section>
+		<section id="link-button" class="min-h-screen relative">
+			<div id="contactos" class="section absolute top-0 right-0">
+			</div>
+			<CpContactos />
+		</section>	
+		</main>
+	<footer>
+		<CpFtDefault />
+    </footer>
+    <CpAjuda />
+    </LayoutDefault>
+
+<script>
+   window.addEventListener("DOMContentLoaded", () => {
+    const spotlight = document.querySelector('.sectionEf .spotlight');
+    const sectionEf = document.querySelector('.sectionEf');
+
+    if (!spotlight || !sectionEf) return; // Verificação para evitar errors
+
+    let spotlightSize = 'transparent 100px, rgba(165, 124, 89, 0.85) 200px';
+
+    sectionEf.addEventListener('mousemove', e => updateSpotlight(e));
+
+    sectionEf.addEventListener('mousedown', e => {
+        spotlightSize = 'transparent 80px, rgba(165, 124, 89, 0.95) 150px';
+        updateSpotlight(e);
+    });
+
+    sectionEf.addEventListener('mouseup', e => {
+        spotlightSize = 'transparent 100px, rgba(165, 124, 89, 0.85) 200px';
+        updateSpotlight(e);
+    });
+
+    function updateSpotlight(e: any) {
+        const rect = sectionEf.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        spotlight.style.backgroundImage = `radial-gradient(circle at ${x}px ${y}px, ${spotlightSize})`;
+    }
+   });
+   </script>
+	<script>
+	document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('.section') as NodeListOf<HTMLElement>;
+    const menuText = document.getElementById('menu-text') as HTMLElement;
+    const menuIcon = document.getElementById('menu-icon') as HTMLElement;
+
+    let lastSectionId: string | null = null;
+    let currentLanguage = 'Portuguese'; // Define o idioma inicial
+
+    function getTranslations(sectionId: string) {
+        const translations = {
+            Portuguese: {
+                home: 'Home',
+                condutas: 'Condutas',
+                    services: 'Serviços',
+                    mentoria: 'Mentoria',
+                sobre: 'Sobre',
+                blog: "Blog",
+                contactos: 'Contactos',
+            },
+            English: {
+                home: 'Home',
+                condutas: 'Guidelines',
+                    services: 'Services',
+                    mentoria: 'Mentoria',
+                sobre: 'About',
+                blog: "Blog",
+                contactos: 'Contacts',
+            }
+        };
+
+        return translations[currentLanguage][sectionId] || '';
+    }
+
+    function getIcons(sectionId: string) {
+        const icons = {
+            home: 'i-ic:round-menu',
+            condutas: 'i-ic:round-auto-awesome',
+                services: 'i-ic:baseline-balance',
+                mentoria: 'i-fa:slideshare',
+            sobre: 'i-ic:baseline-portrait',
+            blog: "i-bi:type-bold",
+            contactos: 'i-ic:round-phone-in-talk',
+        };
+
+        return icons[sectionId] || 'i-ic:round-menu';
+    }
+
+    function updateMenu(sectionId: string) {
+        let newText = getTranslations(sectionId);
+        let newIcon = getIcons(sectionId);
+            let ids = ['contactos', 'condutas', 'mentoria'];  // IDs que você quer verificar
+            let textColor = ids.includes(sectionId) && currentLanguage === 'Portuguese' ? 'text-[#a57c59]' : 'text-white';
+
+        if (menuText && menuIcon) {
+            if (menuText.innerText !== newText || menuIcon.className !== `${newIcon} w-8 h-8 ${textColor}`) {
+                menuText.classList.add('opacity-0', 'invisible');
+                setTimeout(() => {
+                    menuText.innerText = newText;
+                    menuIcon.className = `${newIcon} w-8 h-8 ${textColor}`;
+                    menuText.className = `opacity-100 visible ${textColor}`;
+                }, 100);
+            }
+        }
+    }
+
+    function onScroll() {
+        const scrollY = window.scrollY;
+
+        let currentSectionId: string | null = null;
+
+        sections.forEach(section => {
+            if (!(section instanceof HTMLElement)) return;
+
+            const rect = section.getBoundingClientRect();
+            const sectionTop = rect.top + scrollY;
+            const sectionHeight = section.offsetHeight;
+            const sectionBottom = sectionTop + sectionHeight;
+
+            // Verifica se a div está na área visível
+            const divInView = ( scrollY >= sectionTop - 80 && 
+                scrollY < sectionBottom - 80 && 
+                rect.left < window.innerWidth && 
+                rect.right > 0
+            );
+
+            if (divInView) {
+                currentSectionId = section.id;
+            }
+        });
+
+        if (currentSectionId && currentSectionId !== lastSectionId) {
+            lastSectionId = currentSectionId;
+            updateMenu(currentSectionId);
+        }
+
+        // Força a atualização quando voltar para a mesma seção
+        if (currentSectionId && currentSectionId === lastSectionId) {
+            updateMenu(currentSectionId);
+        }
+
+        // Esconde o texto do menu se não estiver em nenhuma seção
+        if (!currentSectionId && menuText && menuText.classList.contains('visible')) {
+            menuText.classList.remove('opacity-100', 'visible');
+            menuText.classList.add('opacity-0', 'invisible');
+        }
+    }
+
+    function setLanguage(lang: string) {
+        currentLanguage = lang;
+        onScroll(); // Atualiza o menu com base na nova linguagem
+    }
+
+    // Adiciona eventos para troca de idioma
+    document.querySelector('.fi-us')?.addEventListener('click', () => setLanguage('English'));
+    document.querySelector('.fi-br')?.addEventListener('click', () => setLanguage('Portuguese'));
+
+    window.addEventListener('scroll', onScroll);
+    onScroll(); // Inicializa o conteúdo do menu
+  });
+ </script>
