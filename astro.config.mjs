@@ -4,11 +4,11 @@ import react from "@astrojs/react";
 import vue from "@astrojs/vue";
 import alpinejs from "@astrojs/alpinejs";
 
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel/static";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
+  output: "static",
   image: {
     domains: ["astro.build"],
   },
