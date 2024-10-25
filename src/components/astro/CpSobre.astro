@@ -1,0 +1,171 @@
+---
+import image1 from "@images/amanda-sobre.png"
+import perfil from "@images/amanda-instagram.jpg"
+import post1  from "@images/post1.jpeg"
+const props = Astro.props
+---
+
+<!-- Componente Responsivo -->
+<div class="bg-#171b1a relative pr-0 tablet:pr-100px">
+    <div class="flex flex-col tablet:flex-row justify-center tablet:h-screen">
+        <!-- Imagem desktop e tablet -->
+        <div class="hidden tablet:block desktop:flex desktop:justify-end">
+            <img src={image1.src} alt="Fotografia Adv. Amanda Ferraz">
+        </div>
+        <!-- Imagem mobile -->
+        <div class="tablet:hidden">
+            <img src={image1.src} alt="Fotografia Adv. Amanda Ferraz">
+        </div>
+        <div class="flex flex-col justify-center">
+            <div class="flex flex-col justify-center items-center content-center">
+                <h3 id="section-title-sobre" class="text-[#a57c59] playfair-display-bold font-bold antialiased text-2xl desktop:text-[48px] text-center w-fit mb-6 my-4 mx-auto">
+                    Sobre Nós
+                </h3>
+                <p id="intro-paragraph" class="playfair-display-bold text-#efece8 text-[28px] text-center">
+                    Nosso time de advogados está preparado para atender <br class="hidden tablet:block"> a uma ampla variedade de necessidades.
+                </p>
+                <p id="lawyer-registration" class="playfair-display-bold text-#efece8 text-[12px] text-center">
+                    Dra. Amanda Ferraz • 60010P • OAB/MG 138358
+                </p>
+                <div class="flex flex-col gap-8 py-16 desktop:flex desktop:flex-row">
+                    <p id="lawyer-description" class="playfair-display-regular text-#efece8 text-[16px] max-w-[350px] text-center tablet:text-left">
+                        Advogada inscrita na Ordem dos Advogados de Portugal e na Ordem dos Advogados do Brasil, atuo no Direito Internacional com ampla experiência. Utilizo meu conhecimento especializado para apoiar estrangeiros que desejam residir e trabalhar legalmente em Portugal, com foco em áreas como Nacionalidade Portuguesa, Vistos de Residência, Regularização de Imigrantes e Direito Imobiliário.
+                    </p>
+                    <p id="lawyer-education" class="playfair-display-regular text-#efece8 text-[16px] max-w-[350px] text-center tablet:text-left">
+                        Graduada em Direito pela Pontifícia Universidade Católica, sou especialista em Direito do Trabalho pelo Instituto Newton Paiva e mestre em Direito Judiciário pela Universidade do Minho. Busco sempre a eficiência e simplicidade em minha abordagem para oferecer soluções eficazes aos meus clientes.
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-col items-center gap-2 pb-8">
+              <div id="instagram-icon" class="i-fa:instagram w-[34px] h-[34px] cursor-pointer z-10" style="color: #a57c59;"></div>
+                <p id="instaText1" class="text-#efece8">Já me segue no instagram?</p>
+                <p id="instaText2" class="text-center text-#efece8 text-[14px]">
+                Nacionalidade Portuguesa e Imigração. </p>
+                <p id="instaText3" class="text-center text-#efece8 text-[14px]">Sua jornada rumo à Nacionalidade Portuguesa.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast Container -->
+<div id="toast-instagram" class="absolute bottom-4 left-4 space-y-4">
+    <!-- Toast 1 -->
+    <div id="toast-1-instagram" class="toastInst flex flex-col items-center bg-white p-3 rounded-lg shadow-lg transition-opacity duration-500 max-w-[260px] w-full z-20">
+        <div class="w-full flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="relative w-10 h-10">
+                    <img class="w-full h-full rounded-full" src={perfil.src} alt="Profile Image">
+                    <div class="absolute inset-0 rounded-full ring-4 ring-pink-500/50"></div>
+                </div>
+                <div id="toast-1-name" class="ml-2 text-xs font-bold">advogadaamandaferraz</div>
+                <div class="i-ic:baseline-verified w-4 h-4" style="color: #0095f6;"></div>
+            </div>
+            <div>
+                <div class="i-ic:baseline-more-horiz w-5 h-5" style="color: black;"></div>
+            </div>
+        </div>
+        <div class="flex items-center py-3">
+            <img class="w-full h-auto rounded-md" src={post1.src} alt="Post Image">
+        </div>
+        <div class="w-full flex justify-between items-center">
+            <div class="flex gap-2">
+                <div class="i-ic:baseline-favorite w-5 h-5" style="color: red;"></div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="transform: scaleX(-1);">
+                    <path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21a9 9 0 1 0-9-9c0 1.488.36 2.89 1 4.127L3 21l4.873-1c1.236.639 2.64 1 4.127 1" />
+                </svg>
+                <div class="i-bi:send w-5 h-5" style="color: black;"></div>
+            </div>
+            <div>
+                <div class="i-ic:baseline-turned-in w-5 h-5" style="color: black;"></div>
+            </div>
+        </div>
+    </div> 
+</div>
+
+<style>
+
+#toast-instagram .toastInst { 
+    opacity: 0;
+    transform: translateY(200%);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#toast-instagram .toastInst.show {
+    opacity: 1;
+    transform: translateY(0);
+    z-index: 10;
+  }
+</style>
+
+<script>
+ // Seleciona o ícone do Instagram e o toast
+    const instagramIcon = document.getElementById('instagram-icon');
+    const toast = document.getElementById('toast-instagram').querySelector('.toastInst');
+
+    // Função para adicionar a classe .show ao passar o mouse
+    instagramIcon.addEventListener('mouseover', function() {
+        toast.classList.add('show');
+    });
+
+    // Função para remover a classe .show ao sair com o mouse
+    instagramIcon.addEventListener('mouseout', function() {
+        toast.classList.remove('show');
+    });
+
+    // Função para abrir o link do Instagram ao clicar no ícone
+    instagramIcon.addEventListener('click', function() {
+        window.open('https://www.instagram.com/advogadaamandaferraz/', '_blank');
+ });
+
+import { aboutUsData } from '@content/data.js';
+
+let currentLanguage = 'Portuguese'; // Define o idioma inicial
+
+// Função para atualizar o conteúdo
+function updateContent() {
+  const sectionTitle = document.getElementById('section-title-sobre');
+  const introParagraph = document.getElementById('intro-paragraph');
+  const lawyerDescription = document.getElementById('lawyer-description');
+  const lawyerEducation = document.getElementById('lawyer-education');
+
+  // Acessa o objeto de dados para o idioma actual
+  const data = aboutUsData.content[currentLanguage];
+
+  console.log('Data:', data); // Verifica o conteúdo dos dados
+
+  if (data) {
+    sectionTitle.innerText = aboutUsData.sectionTitle[currentLanguage];
+    introParagraph.innerHTML = data.intro;
+    lawyerDescription.innerText = data.lawyer.description;
+    lawyerEducation.innerText = data.lawyer.education;
+  } else {
+    console.error('Dados para o idioma actual não encontrados');
+  }
+}
+
+ function updateInsta() {
+   const lang = currentLanguage;
+
+  // Atualiza os elementos HTML com base no idioma escolhido
+  document.getElementById('instaText1').innerHTML = aboutUsData.instaText1[lang];
+  document.getElementById('instaText2').innerText = aboutUsData.instaText2[lang];
+  document.getElementById('instaText3').innerText = aboutUsData.instaText3[lang];
+ }
+
+// Função para definir o idioma
+function setLanguage(lang) {
+  currentLanguage = lang;
+  updateContent();
+  updateInsta();
+}
+
+// Aguarda o DOM estar completamente carregado antes de executar o script
+document.addEventListener('DOMContentLoaded', () => {
+  // Adiciona eventos para troca de idioma
+  document.querySelector('.fi-us')?.addEventListener('click', () => setLanguage('Ingles'));
+  document.querySelector('.fi-br')?.addEventListener('click', () => setLanguage('Portuguese'));
+
+  // Inicializa o conteúdo com o idioma padrão
+  updateContent();
+});
+</script>

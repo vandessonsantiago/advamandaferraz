@@ -1,0 +1,49 @@
+---
+import BannerNacionalidade from "@images/banner-nacionalidade.png"
+import BannerMobile from "@images/banner_amanda_mobile.png"
+---
+
+<style>
+
+/* Classe para impedir o rolamento da página */
+.no-scroll {
+  overflow: hidden;
+  overscroll-behavior: none;
+  overscroll-behavior-y: none;
+
+}
+</style>
+
+<div id="modal-element" class="hidden bg-banner fixed p-2 tablet:p-100px h-full w-full z-50">
+  <div class="absolute top-8 right-6 z-100 cursor-pointer" id="hide-modal">
+    <div class="i-ic:round-close w-32px h-32px" style="color: #efece8;"></div>
+  </div>
+  <div class="h-full flex justify-center items-center">
+    <div><a href="/nacionalidade-portuguesa">
+      <img class="rounded-lg cursor-pointer block tablet:hidden" src={BannerMobile.src} alt="Banner Nacionalidade">
+      <img class="hidden tablet:block rounded-lg cursor-pointer" src={BannerNacionalidade.src} alt="Banner Nacionalidade">
+    </a>
+  </div>
+  </div>
+</div>
+
+<script>
+const modalElement = document.getElementById('modal-element');
+const hideModalButton = document.getElementById('hide-modal');
+
+// Função para mostrar o modal e desativar o scroll
+function showModal() {
+  modalElement.classList.remove('hidden');  // Torna o elemento visível
+  document.body.classList.add('no-scroll'); // Adiciona a classe para impedir o scroll
+}
+
+// Função para esconder o modal e permitir o scroll
+function hideModal() {
+  modalElement.classList.add('hidden');  // Esconde o elemento
+  document.body.classList.remove('no-scroll');  // Remove a classe e permite o scroll
+}
+
+// Adiciona ouvintes de eventos aos botões
+showModal()
+hideModalButton.addEventListener('click', hideModal);
+</script>

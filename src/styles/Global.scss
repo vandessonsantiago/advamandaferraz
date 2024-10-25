@@ -1,0 +1,198 @@
+/* Importando a fonte Playfair Display do Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
+/* Estilos globais (já fornecidos) */
+:root {
+  --bg-base-color: #efece8;
+  --text-base-color: #000000;
+  --gold-color: #e9d09c;
+  --variable-color: #a57c59;
+
+  --primary-color: #b0a889;
+  --bg-contrast-color: #7f948e;
+  --button-color: #b0604b;
+}
+
+body {
+  background-color: var(--bg-base-color);
+}
+
+.bg-banner {
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 100;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.bg-contrast-color {
+  background-color: var(--bg-contrast-color);
+}
+
+.bg-button {
+  background-color: var(--button-color);
+}
+
+.youtube-video {
+  border: none;
+  border-radius: 0.75rem;
+}
+
+iframe {
+  background-color: none;
+}
+
+.playfair-display-regular {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  /* Regular */
+  font-style: normal;
+}
+
+.playfair-display-bold {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  /* Bold */
+  font-style: normal;
+}
+
+.playfair-display-italic {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  /* Regular weight with Italic style */
+  font-style: italic;
+}
+
+@keyframes bounceAlternate {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+    /* Mover 15px para cima */
+  }
+}
+
+.animate-bounce-alternate {
+  animation: bounceAlternate 10s ease-in-out infinite;
+}
+
+.section {
+  height: 100%;
+  max-height: 90px;
+  width: 350px;
+  /* Isso é só para exemplo, cada seção deve ter seu próprio conteúdo */
+}
+
+#menu {
+  z-index: 50;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.invisible {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Estilo base para a div do menu */
+#menu-contactos-section {
+  transition: background-color 0.3s ease;
+}
+
+.bg-initial-hover {
+  background-color: rgba(165, 124, 89);
+}
+
+/* Estilos para cada tipo de hover */
+.bg-condutas-hover {
+  background-color: #c4b3ae;
+}
+
+.bg-servicos-hover {
+  background-color: #a57c59;
+}
+
+.bg-sobre-hover {
+  background-color: #171b1a;
+}
+
+.bg-blog-hover {
+  background-color: #7f948e;
+}
+
+.bg-contactos-hover {
+  background-color: #b0604b;
+}
+
+/* Estilo para o texto e ícones durante o hover */
+.menu-link div {
+  transition: color 0.3s ease;
+}
+
+.menu-link:hover div {
+  color: #171b1a;
+  /* Ajustar a cor dos ícones se necessário */
+}
+
+.menu-link:hover span {
+  color: #efece8;
+  /* Ajustar a cor do texto se necessário */
+}
+
+/* Efeito de animação para os ícones */
+.menu-link div {
+  transition: transform 0.3s ease;
+  /* Define a transição suave para a transformação */
+}
+
+/* Efeito ao passar o mouse */
+.menu-link:hover div {
+  transform: translateY(-10px) rotateX(15deg);
+  /* Move o ícone para cima e o gira no eixo X */
+}
+
+.relative {
+  position: relative;
+}
+
+.sectionEf {
+  background-color: rgba(0, 0, 0, 0.85);
+  background: url(/src/images/bg-services.png) no-repeat center;
+  background-size: cover;
+  height: 100vh;
+  /* O cursor fica escondido na seção */
+  position: relative;
+  overflow: hidden;
+}
+
+.servicesCP {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  white-space: nowrap;
+}
+
+.sectionEf .spotlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: radial-gradient(circle,
+      transparent 100px,
+      rgba(165, 124, 89, 0.85) 200px);
+  z-index: 2;
+  pointer-events: none;
+}

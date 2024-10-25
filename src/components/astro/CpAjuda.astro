@@ -1,0 +1,54 @@
+---
+---
+
+<div class="whats-click hidden desktop:block">
+  <div
+    class="whats-click bg-green-500 w-fit p-2 rounded-full flex gap-1 justify-center items-center fixed bottom-6 right-4 cursor-pointer z-50">
+    <div class="i-ic:baseline-whatsapp w-24px h-24px whats-click" style="color: white;"></div>
+    <p id="whats-click" class="text-white whats-click">Precisa de Ajuda?</p>
+  </div>
+</div>
+
+<script>
+  // Adiciona um ouvinte de clique ao botão
+  document.querySelector('.whats-click').addEventListener('click', function () {
+    console.log("ouvindo o click")
+    const url = "https://wa.link/9rfxxp"; // URL do WhatsApp
+    window.open(url, "_blank"); // Abre o link em uma nova aba
+  });
+
+  const helpData = {
+   textHelp: {
+    Portuguese: "Precisa de Ajuda?",
+    English: "Need Help?",
+  },
+ 
+  }
+
+  let currentLanguage = 'Portuguese'; // Define o idioma inicial
+
+  function updateHelp() {
+  const lang = currentLanguage;
+
+  // Atualiza os elementos HTML com base no idioma escolhido
+  document.getElementById('whats-click').innerHTML = helpData.textHelp[lang]; 
+}
+
+  // Função para definir o idioma
+  function setLanguage(lang) {
+    currentLanguage = lang;
+    updateHelp();
+  }
+
+// Aguarda o DOM estar completamente carregado antes de executar o script
+document.addEventListener('DOMContentLoaded', () => {
+  // Adiciona eventos para troca de idioma
+  document.querySelector('.fi-us')?.addEventListener('click', () => setLanguage('English'));
+  document.querySelector('.fi-br')?.addEventListener('click', () => setLanguage('Portuguese'));
+
+});
+
+  
+
+
+</script>

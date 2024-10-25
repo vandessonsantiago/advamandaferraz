@@ -1,0 +1,76 @@
+---
+import ContactoComponent from "@components/react/CpContactos.jsx";
+---
+
+<div class="mx-2 desktop:mx-0">
+  <div class="max-w-4xl mx-2 py-9 desktop:mx-auto">
+    <div class="w-full flex flex-col justify-center p-2">
+      <div class="w-full">
+        <h3 id="section-title-contactos" class="text-[#a57c59] playfair-display-bold font-bold antialiased text-2xl desktop:text-48px text-center w-fit mb-6 my-4 mx-auto">
+          Contate-nos
+        </h3>
+      </div>
+      <div>
+        <p id="intro" class="text-[#a57c59] playfair-display-regular text-center text-18px">
+          Entre em contacto de forma fácil e rápida. Estamos sempre disponíveis para atendê-lo(a).
+        </p>
+      </div>
+      <div class="pt-8">
+        <ContactoComponent client:load />
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { contactUsData } from '@content/data.js';
+  
+  document.addEventListener('DOMContentLoaded', function() {
+
+    let currentLanguage = 'Portuguese'; // Define o idioma inicial
+
+    // Função para atualizar o conteúdo
+    function updateContent() {
+      // Dados para o idioma actual
+      const data = contactUsData.formFields[currentLanguage];
+      const sectionTitle = contactUsData.sectionTitle[currentLanguage];
+      const sectionSubtitle = contactUsData.sectionSubtitle[currentLanguage];
+
+      console.log('Data:', data); // Verifique o conteúdo dos dados
+      console.log('title:', sectionTitle); // Verifique o conteúdo dos dados
+      console.log('intro:', sectionSubtitle); // Verifique o conteúdo dos dados
+
+
+
+      // Atualiza os textos dos campos do formulário
+      document.querySelectorAll('[data-i18n]').forEach((element) => {
+        const key = element.getAttribute('data-i18n');
+        element.innerText = data[key] || element.innerText;
+      });
+
+      // Atualiza o título e o subtítulo da seção
+      const sectionTitleElement = document.getElementById('section-title-contactos');
+      if (sectionTitleElement) {
+        sectionTitleElement.innerText = sectionTitle;
+      }
+
+      const subTitleElement = document.getElementById('intro');
+      if (subTitleElement) {
+        subTitleElement.innerText = sectionSubtitle;
+      }
+    }
+
+    // Função para definir o idioma
+    function setLanguage(lang) {
+      currentLanguage = lang;
+      updateContent();
+    }
+
+    // Adiciona eventos para troca de idioma
+    document.querySelector('.fi-us')?.addEventListener('click', () => setLanguage('Ingles'));
+    document.querySelector('.fi-br')?.addEventListener('click', () => setLanguage('Portuguese'));
+
+    // Inicializa o conteúdo com o idioma padrão
+    updateContent();
+  });
+  </script>

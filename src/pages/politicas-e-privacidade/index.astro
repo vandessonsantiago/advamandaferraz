@@ -1,0 +1,29 @@
+---
+import "@styles/Global.scss"; // Importa o arquivo de estilo no contexto do Astro
+import TextPoliticaPrivacidade from "@content/textPoliticas.jsx"
+---
+
+<html lang="PT-br">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/ico" href="/icon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} /> <!-- Usando Astro.generator no .astro -->
+    <title>Políticas e Privacidade | Advogada Amanda Ferraz</title>
+    <meta name="description" content="Advogada Amanda Ferraz atua predominantemente nas áreas de Nacionalidade Portuguesa, Vistos de Residência, Regularização de Imigrantes em território Português e Direito Imobiliário.">
+  </head>
+  <body class="relative">
+    <main class="desktop:mx-auto desktop:max-w-5xl">
+      <div class="flex justify-center items-center h-12">
+        <h1 class="font-bold">POLITICA DE PRIVACIDADE</h1>
+      </div>
+      <div>
+        <h3 class="font-bold antialiased my-4">
+          Este texto está abrindo em uma nova aba ou janela para sua maior
+          comodidade, para voltar ao nosso site, feche esse aba.
+        </h3>
+      </div>
+      <TextPoliticaPrivacidade client:visible />
+    </main> 
+  </body>
+</html>

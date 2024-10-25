@@ -1,0 +1,38 @@
+---
+import videoNacionalidade from "../../videos/video-nacionalidade_new.mp4"
+---
+
+<style>
+.text-titles {
+  color: #a57c59;
+}
+.text-base {
+  color: #efece8;
+  text-wrap: wrap;
+}
+.text-subtitle {
+  color: #6c7c77;
+}
+</style>
+
+
+<div class="p-100px h-full">
+  <div class="max-w-1200px m-auto h-full">
+    <div>
+      <div>
+        <h1 class="text-base playfair-display-bold antialiased leading-12 text-2xl desktop:text-4xl text-center mx-auto py-12">Um trabalho focado em auxiliary pessoas a conquistar a nacionalidade portuguesa</h1>
+      </div>
+      <div class="max-w-600px m-auto">
+         <!-- Video player -->
+            <video class="border border-4" id="myVideo" width="100%" height="100%" controls>
+              <source src={videoNacionalidade} type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+      </div>
+      <div class="w-full p-6 m-auto flex flex-col items-center gap-2">
+        <button class="bg-#6c7c77 py-4 px-6 text-white rounded-md">CONTRATAR AGORA</button>
+        <p class="playfair-display-bold text-#efece8 text-18px text-center max-w-800px">Não deixe para depois a oportunidade de conquistar a nacionalidade portuguesa. Entre em contato hoje mesmo e dê o primeiro passo rumo a uma nova vida cheia de possibilidades em Portugal e na União Europeia.</p>
+      </div>
+    </div>
+  </div>
+</div>

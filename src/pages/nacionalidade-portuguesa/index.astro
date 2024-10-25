@@ -1,0 +1,35 @@
+---
+import "@styles/Global.scss"; // Importa o arquivo de estilo no contexto do Astro
+import CpContactos from "@components/astro/CpContactos.astro";
+import CpHdDefault from "@components/astro/CpHdDefault.astro";
+import CpHeroNacionalidade from "@components/astro/CpHeroNacionalidade.astro"
+import CpVideoNacionalidade from "@components/astro/CpVideoNacionalidade.astro"
+import CpFtDefault from "@components/astro/CpFtDefault.astro";
+import CpHdLandpages from "@components/astro/CpHdLandpages.astro";
+---
+
+<html lang="PT-br">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/ico" href="/icon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} /> <!-- Usando Astro.generator no .astro -->
+    <title>Nacionalidade Portuguesa | Advogada Amanda Ferraz</title>
+    <meta name="description" content="Advogada Amanda Ferraz atua predominantemente nas áreas de Nacionalidade Portuguesa, Vistos de Residência, Regularização de Imigrantes em território Português e Direito Imobiliário.">
+  </head>
+  <body class="relative">
+    <main>
+      <section class="min-h-screen bg-gradient-to-t from-[#6c7c77] to-[#7f948e]">
+        <CpHdLandpages />
+        <CpHeroNacionalidade />
+      </section>
+      <section class="min-h-screen bg-#a57c59">
+        <CpVideoNacionalidade />
+      </section>
+      <section class="min-h-screen">
+        <CpContactos />
+      </section>
+    </main>
+    <CpFtDefault />
+  </body>
+</html>

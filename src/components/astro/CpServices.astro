@@ -1,0 +1,73 @@
+---
+import Accordion from '@components/astro/Accordion.astro';
+import Indice from '@components/react/CpIndices';
+---
+
+<!-- Desktop -->
+<div class="tablet:p-100px h-full flex justify-center items-center tablet:p-4">
+ <div class="max-w-1200px w-full h-full tablet:p-4 tablet:m-4 servicesCP">
+  <div class="w-full flex flex-col items-center justify-center h-full">
+    <div class="flex items-center py-8 justify-center tablet:p-4 tablet:m-4">
+      <h3 id="section-title" class="text-#efece8 playfair-display-bold font-bold antialiased text-28px tablet:text-48px text-center">
+        Nossos Serviços
+      </h3>
+    </div>
+    <div class="w-full tablet:p-8 flex flex-col justify-center items-center relative">
+      <Accordion />
+      <Indice client:load />
+    </div>
+  </div>
+    </div> 
+  </div>
+
+<script>
+import { accordionData } from '@content/data.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+    let currentLanguage = 'Portuguese'; // Define o idioma inicial
+
+    const translations = {
+        Portuguese: {
+            sectionTitle: 'Nossos Serviços'
+        },
+        English: {
+            sectionTitle: 'Our Services'
+        }
+    };
+
+    function updateSectionTitle() {
+        const sectionTitleElement = document.getElementById('section-title');
+        if (sectionTitleElement) {
+            sectionTitleElement.innerText = translations[currentLanguage].sectionTitle;
+        }
+    }
+
+    // Função para atualizar o conteúdo
+function updateIndice() {
+  const lang = currentLanguage;
+
+  // Atualiza os elementos HTML com base no idioma escolhido
+  document.getElementById('indiceContent1').innerHTML = accordionData.indiceContent1[lang];
+  document.getElementById('indiceContent2').innerText = accordionData.indiceContent2[lang];
+  document.getElementById('indiceTitle1').innerText = accordionData.indiceTitle1[lang];
+  document.getElementById('indiceTitle2').innerText = accordionData.indiceTitle2[lang];
+  document.getElementById('indiceTitle3').innerText = accordionData.indiceTitle3[lang];
+  
+}
+
+    
+    
+
+    function setLanguage(lang) {
+        currentLanguage = lang;
+      updateSectionTitle();
+      updateIndice()
+    }
+
+    // Adiciona eventos para troca de idioma
+    document.querySelector('.fi-us')?.addEventListener('click', () => setLanguage('English'));
+    document.querySelector('.fi-br')?.addEventListener('click', () => setLanguage('Portuguese'));
+
+    updateSectionTitle(); // Inicializa o título da seção com o idioma padrão
+});
+</script>

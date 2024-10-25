@@ -1,0 +1,176 @@
+---
+import "@styles/Global.scss"; // Importa o arquivo de estilo no contexto do Astro
+---
+
+<html lang="PT-br">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/ico" href="/icon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} /> <!-- Usando Astro.generator no .astro -->
+    <script src="https://unpkg.com/react-phone-input-2@2.x/dist/lib.js"></script>
+    <title>Página Inicial | Advogada Amanda Ferraz</title>
+    <meta name="description" content="Advogada Amanda Ferraz atua predominantemente nas áreas de Nacionalidade Portuguesa, Vistos de Residência, Regularização de Imigrantes em território Português e Direito Imobiliário.">
+  </head>
+  <body class="relative">
+ <!-- Menu Overlay -->
+<div id="menu-contactos-section" class="hidden absolute z-100 h-screen w-screen bg-initial-hover">
+  <div class="absolute top-8 right-6 z-100 cursor-pointer" id="menu-close">
+    <div class="i-ic:round-close w-32px h-32px" style="color: #efece8;"></div>
+  </div>
+  <div class="h-screen flex justify-center items-center content-center relative">
+    <div class="flex flex-col tablet:flex-row gap-16 h-full justify-center items-center">
+      <a href="#condutas" class="menu-link">
+        <div class="flex flex-col items-center">
+          <div class="i-ic:round-auto-awesome w-45px h-45px" style="color: #efece8;"></div>
+          <span id="menu-contactos-condutas" class="link text-5xl playfair-display-bold text-#efece8">Condutas</span>
+        </div>
+      </a>
+      <a href="#services" class="menu-link">
+        <div class="flex flex-col items-center">
+          <div class="i-ic:baseline-balance w-45px h-45px" style="color: #efece8;"></div>
+          <span id="menu-contactos-servicos" class="link text-5xl playfair-display-bold text-#efece8">Serviços</span>
+        </div>
+      </a>
+      <a href="#sobre" class="menu-link">
+        <div class="flex flex-col items-center">
+          <div class="i-ic:baseline-portrait w-45px h-45px" style="color: #efece8;"></div>
+          <span id="menu-contactos-sobre" class="link text-5xl playfair-display-bold text-#efece8">Sobre</span>
+        </div>
+      </a>
+      <a href="#blog" class="menu-link">
+        <div class="flex flex-col items-center">
+          <div class="i-bi:type-bold w-45px h-45px" style="color: #efece8;"></div>
+          <span id="menu-contactos-blog" class="link text-5xl playfair-display-bold text-#efece8">Blog</span>
+        </div>
+      </a>
+      <a href="#contactos" class="menu-link">
+        <div class="flex flex-col items-center">
+          <div class="i-ic:round-phone-in-talk w-45px h-45px" style="color: #efece8;"></div>
+          <span id="menu-contactos-contactos" class="link text-5xl playfair-display-bold text-#efece8">Contactos</span>
+        </div>
+      </a>
+      </div>
+     </div>
+    </div>
+    <slot /> 
+  </body>
+</html>
+
+<script>
+  import { menuData } from '@content/data.js';
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuTrigger = document.getElementById('menu-trigger');
+    const menuSection = document.getElementById('menu-contactos-section');
+    const closeButton = document.getElementById('menu-close');
+    const menuLinks = document.querySelectorAll('.menu-link');
+    const main = document.querySelector('main');
+    const footer = document.querySelector('footer');
+    const menuText = document.getElementById('menu-text') as HTMLElement;
+    const menuIcon = document.getElementById('menu-icon') as HTMLElement;
+
+    let currentLanguage = 'Portuguese';
+
+    function updateMenuContent() {
+      const data = menuData[currentLanguage];
+
+      document.getElementById('menu-contactos-condutas').innerText = data.condutas;
+      document.getElementById('menu-contactos-servicos').innerText = data.servicos;
+      document.getElementById('menu-contactos-sobre').innerText = data.sobre;
+      document.getElementById('menu-contactos-blog').innerText = data.blog;
+      document.getElementById('menu-contactos-contactos').innerText = data.contactos;
+    }
+
+    function setLanguage(lang) {
+      currentLanguage = lang;
+      updateMenuContent();
+    }
+
+    document.querySelector('.fi-us')?.addEventListener('click', () => setLanguage('Ingles'));
+    document.querySelector('.fi-br')?.addEventListener('click', () => setLanguage('Portuguese'));
+
+     function updateMenu() {
+        let newText = "home";
+        let newIcon = 'i-ic:round-menu';
+        let textColor = 'text-white';
+        menuText.innerText = newText;
+        menuIcon.className = `${newIcon} w-8 h-8 ${textColor}`;
+        menuText.className = `opacity-100 visible ${textColor}`;
+    }
+
+    menuTrigger.addEventListener('click', function() {
+      menuSection.classList.remove('hidden');
+      setTimeout(() => {
+        menuSection.classList.remove('opacity-0', 'translate-y-full');
+      }, 10);
+      if (main) main.style.display = 'none';
+      if (footer) footer.style.display = 'none';
+      
+    });
+
+    closeButton.addEventListener('click', function() {
+      menuSection.classList.add('opacity-0', 'translate-y-full');
+      setTimeout(() => {
+        menuSection.classList.add('hidden');
+      }, 500);
+      if (main) main.style.display = '';
+      if (footer) footer.style.display = '';
+      updateMenu()
+    });
+
+    menuLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        menuSection.classList.add('opacity-0', 'translate-y-full');
+        setTimeout(() => {
+          menuSection.classList.add('hidden');
+        }, 500);
+        if (main) main.style.display = '';
+        if (footer) footer.style.display = '';
+      });
+    });
+
+    updateMenuContent();
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+  const menuSection = document.getElementById('menu-contactos-section');
+  const links = document.querySelectorAll('.link');
+
+  // Verifica se os links e a div do menu foram encontrados
+  console.log('Menu Section:', menuSection);
+  console.log('Links:', links);
+
+  links.forEach(link => {
+    link.addEventListener('mouseenter', function() {
+      console.log('Mouse entered:', this);  // Verifica o que `this` está referenciando
+
+      // Remove todas as classes de fundo
+        menuSection.classList.remove("bg-initial-hover", 'bg-condutas-hover', 'bg-servicos-hover', 'bg-sobre-hover', 'bg-contactos-hover', 'bg-blog-hover');
+      
+      // Adiciona a classe correspondente com base no ID do link
+        const id = this.id;
+        console.log(id)
+      if (id === 'menu-contactos-condutas') {
+        menuSection.classList.add('bg-condutas-hover');
+      } else if (id === 'menu-contactos-servicos') {
+        menuSection.classList.add('bg-servicos-hover');
+      } else if (id === 'menu-contactos-sobre') {
+        menuSection.classList.add('bg-sobre-hover');
+      } else if (id === 'menu-contactos-blog') {
+        menuSection.classList.add('bg-blog-hover');
+      } else if (id === 'menu-contactos-contactos') {
+        menuSection.classList.add('bg-contactos-hover');
+      }  
+    });
+  });
+
+  // Remove a classe quando o mouse sai da div do menu
+  menuSection.addEventListener('mouseleave', function() {
+    console.log('Mouse left menu section');
+      menuSection.classList.remove('bg-condutas-hover', 'bg-servicos-hover', 'bg-sobre-hover', 'bg-contactos-hover', 'bg-blog-hover' );
+      menuSection.classList.add('bg-initial-hover');
+
+  });
+  });
+  </script>

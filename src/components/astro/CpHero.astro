@@ -1,0 +1,168 @@
+---
+import heroimg from "@images/img-amanda-01.jpeg"
+import bannerMentoria from "@images/banner-mentoria.gif"
+---
+
+<style>
+  /* Transição suave */
+  #hero-img {
+    transition: opacity 1s ease-in-out;
+  }
+
+  .fade-in {
+    opacity: 1;
+  }
+
+  .fade-out {
+    opacity: 0;
+  }
+</style>
+
+<!-- Desktop -->
+<div class="hidden tablet:p-100px tablet:flex justify-center items-center h-full"> 
+  <div class="flex flex-wrap w-full">
+    <div class="w-full desktop:w-1/2 mb-8 desktop:flex desktop:flex-col desktop:content-center desktop:justify-center">
+      <p class="text-[#efece8] playfair-display-bold text-32px pb-2 pr-10 antialiased hero-title">
+        Oferecemos suporte completo para ajudar você a viver de forma legal e tranquila em Portugal, além de solucionar qualquer problema jurídico que possa surgir ao longo do caminho.
+      </p>
+      <p class="text-[#efece8] playfair-display-regular text-18px pb-2 pr-10 tracking-wide hero-subtitle">
+        Nossa equipe de advogados está preparada para atender às mais diversas demandas em Portugal, combinando conhecimento teórico atualizado com experiência prática.
+      </p>
+      <button id="contact-button" class="uppercase font-bold px-6 py-4 bg-[#a57c59] text-[#efece8] text-22px my-2 rounded-lg max-w-350px hero-button">
+        Entre em Contato
+      </button>
+    </div>
+    <div class="w-full desktop:w-1/2 flex justify-center">
+  <div id="Banner-hero" class="relative max-w-full desktop:max-w-[640px] flex flex-col items-center">
+    <!-- Aqui começa a alternância de imagens -->
+        <img id="hero-img" class="drop-shadow-2xl ring ring-white ring-offset-4 animate-bounce-alternate" src={bannerMentoria.src} alt="fotografia adv. amanda ferraz">
+    
+    <!-- Botão que só aparece com o GIF -->
+    <button id="button-banner" class="absolute bottom-4 uppercase font-bold px-6 py-4 bg-[#f59e0b] text-[#efece8] text-22px my-2 rounded-lg max-w-350px hero-button animate-pulse hidden">
+      <a id="btn-banner" href="/#mentoria">SAIBA MAIS</a>
+    </button>
+      </div>
+    </div>  
+  </div>
+</div>
+
+<!-- Mobile -->
+<div class="px-2 py-22 flex justify-center items-center h-full tablet:hidden"> 
+  <div class="flex flex-wrap w-full">
+    <div class="w-full flex flex-col justify-center items-center">
+      <p class="text-[#efece8] playfair-display-bold text-24px antialiased hero-title text-center">
+        Oferecemos suporte completo para ajudar você a viver de forma legal e tranquila em Portugal, além de solucionar qualquer problema jurídico que possa surgir ao longo do caminho.
+      </p>
+      <p class="text-[#efece8] playfair-display-regular text-18px tracking-wide hero-subtitle text-center">
+        Nossa equipe de advogados está preparada para atender às mais diversas demandas em Portugal, combinando conhecimento teórico atualizado com experiência prática.
+      </p>
+      <div class="w-full flex justify-center py-4">
+        <button id="contact-button" class="uppercase font-bold px-6 py-4 bg-[#a57c59] text-[#efece8] text-22px my-2 rounded-lg max-w-350px hero-button">
+        Entre em Contato
+      </button>
+      </div>
+          </div>
+    <div class="py-4 px-2 w-full flex justify-center">
+  <div id="Banner-hero" class="relative max-w-full desktop:max-w-[640px] flex flex-col items-center">
+    <!-- Aqui começa a alternância de imagens -->
+        <img id="hero-img" class="drop-shadow-2xl ring ring-white ring-offset-4 animate-bounce-alternate" src={bannerMentoria.src} alt="fotografia adv. amanda ferraz">
+    
+    <!-- Botão que só aparece com o GIF -->
+    <button id="button-banner" class="absolute bottom-4 uppercase font-bold px-6 py-4 bg-[#f59e0b] text-[#efece8] text-22px my-2 rounded-lg max-w-350px hero-button animate-pulse hidden">
+      <a href="/#mentoria">SAIBA MAIS</a>
+    </button>
+      </div>
+    </div>  
+  </div>
+</div>
+
+<script>
+import heroimg from "@images/img-amanda-01.jpeg"
+import bannerMentoria from "@images/banner-mentoria.gif"
+
+// Caminhos das imagens
+  const heroImgSrc = heroimg.src; // Imagem estática
+  const gifImgSrc = bannerMentoria.src; // GIF
+
+   const heroImg = document.getElementById('hero-img');
+  const buttonBanner = document.getElementById('button-banner');
+
+  // Tempo de exibição para cada imagem (10 segundos)
+  const displayTime = 10000;
+
+  // Função para alternar imagens com transição suave
+  function toggleImage() {
+    // Primeira etapa: fade out da imagem actual
+    heroImg.classList.remove('fade-in');
+    heroImg.classList.add('fade-out');
+
+    // Espera a transição de fade out (1s) para trocar a imagem
+    setTimeout(() => {
+      if (heroImg.src.includes(heroImgSrc)) {
+        // Muda para o GIF e exibe o botão
+        heroImg.src = gifImgSrc;
+        buttonBanner.classList.remove('hidden');
+      } else {
+        // Muda para a imagem estática e esconde o botão
+        heroImg.src = heroImgSrc;
+        buttonBanner.classList.add('hidden');
+      }
+
+      // Segunda etapa: fade in da nova imagem
+      heroImg.classList.remove('fade-out');
+      heroImg.classList.add('fade-in');
+    }, 500); // Tempo de fade out (1s)
+  }
+
+  // Alterna a imagem a cada 10 segundos
+  setInterval(toggleImage, displayTime);
+
+  // Exibe o botão apenas quando o GIF estiver sendo exibido
+  window.addEventListener('load', function () {
+    heroImg.classList.add('fade-in');
+    if (heroImg.src.includes(gifImgSrc)) {
+      buttonBanner.classList.remove('hidden');
+    } else {
+      buttonBanner.classList.add('hidden');
+    }
+});
+
+import { TextHero } from '@content/data.js'; // ajuste o caminho conforme necessário
+
+const langButtons = {
+  en: document.querySelector('.fi-us'),
+  pt: document.querySelector('.fi-br')
+};
+
+const elements = {
+  headerMenuText: document.getElementById('menu-text'),
+  heroTitle: document.querySelector('.hero-title'),
+  heroSubtitle: document.querySelector('.hero-subtitle'),
+  heroButton: document.querySelector('.hero-button'),
+  btnBanner: document.getElementById('btn-banner'),
+
+};
+
+function setLanguage(lang) {
+  // Atualiza o cabeçalho
+  elements.headerMenuText.textContent = TextHero.header[lang].menuText;
+
+  // Atualiza a seção Hero
+  elements.heroTitle.textContent = TextHero.hero[lang].title;
+  elements.heroSubtitle.textContent = TextHero.hero[lang].subtitle;
+  elements.heroButton.textContent = TextHero.hero[lang].button;
+  elements.btnBanner.textContent = TextHero.hero[lang].btnBanner;
+}
+
+// Eventos de clique nas bandeiras
+langButtons.en.addEventListener('click', () => setLanguage('English'));
+langButtons.pt.addEventListener('click', () => setLanguage('Portuguese'));
+
+// Definindo o idioma padrão
+setLanguage('Portuguese');
+
+// Função para rolar suavemente até a seção de contatos
+document.getElementById('contact-button').addEventListener('click', function() {
+  document.getElementById('contactos').scrollIntoView({ behavior: 'smooth' });
+});
+</script>

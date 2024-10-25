@@ -1,0 +1,223 @@
+---
+import image1 from "@images/ambiente.png";
+import image2 from "@images/estudos.png";
+import image3 from "@images/comunica.png";
+
+const customStyles = {
+  textColorBase: "#675f5e",
+}
+
+const {
+  textColorBase
+} = Astro.props;
+---
+
+<div class="p-20px tablet:p-100px w-full flex items-center justify-center">
+  <div class="w-full flex flex-col items-center justify-center">
+    <div class="py-8 tablet:pb-16 flex justify-center">
+      <h3 id="section-title-conduta" class="text-[#a57c59] playfair-display-bold font-bold antialiased text-[28px] tablet:text-2xl desktop:text-[48px] text-center w-fit mx-auto">
+        Conduta Professional
+      </h3>
+    </div>
+    <div class="flex flex-wrap gap-14 justify-items-center py-2">
+      <div id="card1" class="tablet:max-w-340px">
+        <h3 id="toast-view" class="uppercase text-#6c7c77 text-[19px] playfair-display-bold py-2 text-center tablet:text-left">Expertise Atualizada</h3>
+        <img class="grayscale-0 shadow-lg w-full" src={image2.src} alt="Estudos">
+        <p class="playfair-display-bold text-[16px] pt-4 text-#675f5e text-center tablet:text-left">Estamos sempre atualizados com as mais recentes mudanças legais, garantindo que nossos clientes recebam orientações precisas e relevantes. Esse compromisso com a atualização constante nos permite oferecer soluções que estão em sintonia com as práticas jurídicas atuais.</p>
+      </div>
+      <div id="card2" class="tablet:max-w-[370px]">
+        <h3 class="uppercase text-[#6c7c77] text-[19px] playfair-display-bold py-2 text-center tablet:text-left">Diálogo Claro</h3>
+        <img class="grayscale-0 shadow-lg w-full" src={image3.src} alt="comunica">
+        <p class="playfair-display-bold text-[16px] pt-4 text-#675f5e text-center tablet:text-left">Priorizamos a comunicação simples e direta, garantindo que nossos clientes entendam cada etapa do processo. Explicamos todos os detalhes de maneira acessível, eliminando dúvidas e promovendo um entendimento claro.</p>
+      </div>
+      <div id="card3" class="tablet:max-w-[370px]">
+        <h3 class="uppercase text-[#6c7c77] text-[19px] playfair-display-bold py-2 text-center tablet:text-left">Engajamento Pessoal</h3>
+        <img class="grayscale-0 shadow-lg w-full" src={image1.src} alt="ambiente">
+        <p class="playfair-display-bold text-[16px] pt-4 text-#675f5e text-center tablet:text-left">Unimos nosso conhecimento atualizado com uma comunicação transparente para oferecer um serviço jurídico eficiente. Garantimos que os clientes estejam bem informados e seguros em todas as decisões tomadas.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div id="toast-container" class="fixed bottom-20 right-4 space-y-4 z-50">
+  <!-- Toast 1 -->
+  <div id="toast-1" class="toast hidden flex items-center bg-white p-4 rounded-lg shadow-lg transition-opacity duration-500 max-w-350px">
+    <img id="toast-1-photo" src="" alt="Client Photo" class="w-12 h-12 rounded-full mr-4">
+    <div>
+      <div id="toast-1-name" class="text-sm font-bold">name do Cliente 1</div>
+      <div class="flex items-center">
+        <span id="toast-1-stars" class="text-yellow-500">⭐⭐⭐⭐⭐</span>
+        <span id="toast-1-date" class="text-xs text-gray-500 ml-2">Há um mês</span>
+      </div>
+      <div id="toast-1-comment" class="text-14px">Comentário do cliente 1...</div>
+    </div>
+  </div> 
+  
+<style>
+#toast-container .toast { 
+    opacity: 0;
+    transform: translateY(200%);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+#toast-container .toast.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<!-- Client-side script -->
+<script>
+import { CondutaProfissional, depoimentosData } from '@content/data.js';
+let currentLanguage = 'Portuguese';
+
+function updateContent() {
+  const sectionTitle = document.getElementById('section-title-conduta');
+  const card1 = document.getElementById('card1');
+  const card2 = document.getElementById('card2');
+  const card3 = document.getElementById('card3');
+
+  const data = CondutaProfissional[currentLanguage];
+
+  if (data) {
+    if (sectionTitle) {
+      sectionTitle.innerText = data.titulo;
+    }
+
+    if (card1) {
+      card1.querySelector('h3').innerText = data.card1.titulo;
+      card1.querySelector('p').innerText = data.card1.descricao;
+    }
+
+    if (card2) {
+      card2.querySelector('h3').innerText = data.card2.titulo;
+      card2.querySelector('p').innerText = data.card2.descricao;
+    }
+
+    if (card3) {
+      card3.querySelector('h3').innerText = data.card3.titulo;
+      card3.querySelector('p').innerText = data.card3.descricao;
+    }
+  } else {
+    console.error('Data for current language not found');
+  }
+}
+
+function setLanguage(lang) {
+  currentLanguage = lang;
+  updateContent();
+}
+
+document.querySelector('.fi-us')?.addEventListener('click', () => setLanguage('English'));
+document.querySelector('.fi-br')?.addEventListener('click', () => setLanguage('Portuguese'));
+
+updateContent();
+
+import confetti from 'canvas-confetti';
+
+const toastDelay = 10000;
+const pauseBetweenToasts = 5000;
+let currentToastIndex = 0;
+let toastTimeout;
+let scrollTimeout;
+
+function showToast(toastElement) {
+  toastElement.classList.remove('hidden');
+  toastElement.classList.add('show');
+  
+  if (isInCondutasSection()) {
+    triggerConfetti(toastElement); // Dispara o efeito de confete apenas se a seção estiver visível
+  }
+}
+
+function hideToast(toastElement) {
+  toastElement.classList.remove('show');
+  toastElement.classList.add('hidden');
+}
+
+function updateToastContent(toastElementId, data) {
+  const toastElement = document.getElementById(toastElementId);
+  toastElement.querySelector('img').src = data.image;
+  toastElement.querySelector('.text-sm.font-bold').innerText = data.name;
+  toastElement.querySelector('.text-yellow-500').innerText = data.stars;
+  toastElement.querySelector('.text-xs.text-gray-500').innerText = data.date;
+  toastElement.querySelector('.text-14px').innerText = data.comment;
+}
+
+function showNextComment() {
+  const toast1 = document.getElementById('toast-1');
+
+  hideToast(toast1);
+
+  const nextToastIndex = currentToastIndex % depoimentosData.length;
+
+  updateToastContent('toast-1', depoimentosData[nextToastIndex]);
+  
+  if (isInCondutasSection()) {
+    showToast(toast1);
+  }
+
+  setTimeout(() => {
+    hideToast(toast1);
+  }, toastDelay);
+
+  currentToastIndex++;
+
+  // Configura o próximo toast para set exibido após o intervalo
+  toastTimeout = setTimeout(() => {
+    if (isInCondutasSection()) {
+      showNextComment();
+    }
+  }, toastDelay + pauseBetweenToasts);
+}
+
+function isInCondutasSection() {
+  const condutasSection = document.getElementById('toast-view'); // ID da seção de condutas
+  if (!condutasSection) return false;
+
+  const rect = condutasSection.getBoundingClientRect();
+  return (
+    rect.top < window.innerHeight &&
+    rect.bottom >= 0
+  );
+}
+
+function startToastCycle() {
+  // Verifica se a seção está visível e o menu está oculto
+  const menu = document.getElementById('menu-contactos-section'); // ID do menu
+  if (isInCondutasSection() && menu.classList.contains('hidden')) {
+    showNextComment();
+  } else {
+    clearTimeout(toastTimeout); // Para qualquer ciclo de toast ativo
+  }
+}
+
+function handleScroll() {
+  clearTimeout(scrollTimeout);
+  clearTimeout(toastTimeout);
+
+  scrollTimeout = setTimeout(() => {
+    startToastCycle();
+  }, 800); // Aguarda 800ms após o fim da rolagem para iniciar o ciclo de toasts
+}
+
+function triggerConfetti(toastElement) {
+  // Verifica se o menu está ativo (visível)
+  const menu = document.getElementById('menu-contactos-section'); // Substitua 'menu' pelo ID da sua classe de menu
+  if (menu && menu.classList.contains('hidden')) {
+    const rect = toastElement.getBoundingClientRect();
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      startVelocity: 30,
+      origin: {
+        x: (rect.left + rect.width / 2) / window.innerWidth,
+        y: (rect.top + rect.height / 2) / window.innerHeight
+      },
+    });
+  }
+}
+
+window.addEventListener('scroll', handleScroll);
+document.addEventListener('DOMContentLoaded', startToastCycle);
+</script>

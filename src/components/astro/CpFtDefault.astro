@@ -1,0 +1,61 @@
+---
+---
+
+<div class="bg-contrast-color flex justify-center items-center">
+  <div class="p-4">
+  <p id="text1" class="text-white text-12px text-center playfair-display-regular">Esse site não faz parte do Google LLC nem do Facebook Inc. e não oferecemos nenhum tipo de serviço official do governo. Trabalhamos exclusivamente com assessoria jurídica.</p>
+  <p id="text2" class="text-white text-12px text-center playfair-display-regular">Este site respeita o estatuto da Ordem dos Advogados.</p>
+  <p id="text3" class="text-white text-12px text-center playfair-display-regular">Dra. Amanda Ferraz • 60010P • OAB/MG 138358</p>
+  <div class="w-full flex items-center justify-center gap-1 py-2">
+        <p class="text-white text-12px text-center playfair-display-regular">© 2024 todos os direitos reservados.</p>
+        <a href="/politicas-e-privacidade"> <span class="text-white text-12px text-center playfair-display-regular">Politicas e Privacidade.</span></a>
+  </div>
+
+</div>
+</div>
+<script>
+  import { footerData } from '@content/data.js';
+  
+  document.addEventListener('DOMContentLoaded', function() {
+
+    let currentLanguage = 'Portuguese'; // Define o idioma inicial
+
+    // Função para atualizar o conteúdo
+    function updateContent() {
+      // Dados para o idioma actual
+      const text1 = footerData[currentLanguage].paragraph1;
+      const text2 = footerData[currentLanguage].paragraph2;
+      const text3 = footerData[currentLanguage].paragraph3;
+
+       // Atualiza o título e o subtítulo da seção
+      const textElement1 = document.getElementById('text1');
+      if (textElement1) {
+        textElement1.innerText = text1;
+      }
+
+      // Atualiza o título e o subtítulo da seção
+      const textElement2 = document.getElementById('text2');
+      if (textElement2) {
+        textElement2.innerText = text2;
+      }
+
+      const textElement3 = document.getElementById('text3');
+      if (textElement3) {
+        textElement3.innerText = text3;
+      }
+    }
+
+    // Função para definir o idioma
+    function setLanguage(lang) {
+      currentLanguage = lang;
+      updateContent();
+    }
+
+    // Adiciona eventos para troca de idioma
+    document.querySelector('.fi-us')?.addEventListener('click', () => setLanguage('Ingles'));
+    document.querySelector('.fi-br')?.addEventListener('click', () => setLanguage('Portuguese'));
+
+    // Inicializa o conteúdo com o idioma padrão
+    updateContent();
+  });
+  </script>

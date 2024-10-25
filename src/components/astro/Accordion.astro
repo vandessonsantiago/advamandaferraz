@@ -1,0 +1,114 @@
+---
+import CpAjuda from "./CpAjuda.astro";
+---
+
+<style>
+.accordion-container {
+  width: 80%;
+  margin: auto;
+}
+
+.accordion-panel.hidden {
+  display: none;
+  width: 100%; /* Ajuste para 100% se quiser que o conteúdo ocupe toda a largura do container */
+}
+
+.accordion-button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+  text-align: left;
+  width: 100%;
+}
+</style>
+
+<div class="accordion-container border-4 border-#efece8 tablet:p-2">
+  <!-- O conteúdo do acordeão será injetado aqui pelo JavaScript -->
+  <div id="accordion-content">
+    <!-- Os items do acordeão serão adicionados aqui pelo JavaScript -->
+  </div>
+  </div>
+<script>
+import { accordionData } from '@content/data.js';
+
+// Inicializa a linguagem padrão
+let currentLanguage = 'Portuguese';
+
+// Função para atualizar o conteúdo do acordeão com base na linguagem actual
+function updateAccordionContent() {
+  const accordionContentElement = document.getElementById('accordion-content');
+  
+  // Limpa o conteúdo do acordeão
+  accordionContentElement.innerHTML = '';
+
+  // Adiciona os items do acordeão
+  accordionData.items.forEach((item, index) => {
+    const title = item[currentLanguage].title;
+    const content = item[currentLanguage].content;
+
+    // Cria o item do acordeão
+    const accordionItem = document.createElement('div');
+    accordionItem.classList.add('accordion-item');
+    
+    accordionItem.innerHTML = `
+      <button id="accordion-button-${index}" class="accordion-button flex items-center justify-between w-full py-2 px-2">
+        <span class="playfair-display-bold text-#efece8 text-14px tablet:text-16px">${title}</span>
+        <i id="accordion-icon-${index}" class="i-ic:baseline-plus ml-2" style="color: #efece8;"></i>
+      </button>
+      <div id="accordion-panel-${index}" class="accordion-panel hidden">
+        <p class="py-2 text-#efece8 text-wrap">${content}</p>
+      </div>
+    `;
+    
+    // Adiciona o item ao container do acordeão
+    accordionContentElement.appendChild(accordionItem);
+  });
+
+  // Configura o comportamento do acordeão
+  setupAccordion();
+}
+
+// Função para configurar o comportamento do acordeão
+function setupAccordion() {
+  const accordionItems = document.querySelectorAll('.accordion-item');
+  const titleSection = document.querySelectorAll('.title-section');
+
+  accordionItems.forEach((item, index) => {
+    const button = document.getElementById(`accordion-button-${index}`);
+    const panel = document.getElementById(`accordion-panel-${index}`);
+    const icon = document.getElementById(`accordion-icon-${index}`);
+
+    button.addEventListener('click', () => {
+      const isOpen = panel.classList.contains('hidden');
+      
+      // Fechar todos os painéis
+      document.querySelectorAll('.accordion-panel').forEach(p => p.classList.add('hidden'));
+      document.querySelectorAll('.accordion-button i').forEach(i => {
+        i.classList.remove('i-ic:baseline-minus');
+        i.classList.add('i-ic:baseline-plus');
+      });
+
+      // Abrir ou fechar o painel actual
+      if (isOpen) {
+        panel.classList.remove('hidden');
+        icon.classList.remove('i-ic:baseline-plus');
+        icon.classList.add('i-ic:baseline-minus');
+      }
+    });
+  });
+}
+
+// Função para definir o idioma
+function setLanguage(lang) {
+  currentLanguage = lang;
+  updateAccordionContent();
+}
+
+// Eventos de clique nas bandeiras
+document.querySelector('.fi-us').addEventListener('click', () => setLanguage('English'));
+document.querySelector('.fi-br').addEventListener('click', () => setLanguage('Portuguese'));
+
+// Inicializa o conteúdo do acordeão com o idioma padrão
+updateAccordionContent();
+</script>

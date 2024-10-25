@@ -1,0 +1,65 @@
+---
+import BlogComponnent from "@components/react/CpBlog.jsx"
+---
+
+<!-- Desktop -->
+<div class="hidden tablet:block p-100px h-full w-full ">
+  <div class="py-8">
+    <div class="pb-16 flex flex-col gap-2 items-center">
+      <h3 id="title-blog" class="text-#b0604b playfair-display-bold antialiased text-2xl desktop:text-48px text-center mx-auto">Perspectivas Jurídicas</h3>
+       <p id="subtitle-blog" class="pt-4px playfair-display-bold text-24px text-#efece8 text-center">Soluções Legais Inteligentes.</p>
+    </div>
+    <div>
+      <BlogComponnent client:load />
+    </div>
+    <div class="flex justify-center pt-8">
+      <p id="text-blog" class="playfair-display-bold text-18px text-#efece8 text-center">Informações importantes e atualizadas sobre Nacionalidade Portuguesa, Vistos de <br> Residência, Regularização de Imigrantes em território Português e Direito Imobiliário.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile -->
+<div class="p-2px h-full w-full tablet:hidden">
+  <div class="py-8">
+    <div class="pb-16 flex flex-col gap-2 items-center">
+      <h3 id="title-blog" class="text-#b0604b playfair-display-bold antialiased text-2xl desktop:text-48px text-center">Perspectivas Jurídicas</h3>
+       <p id="subtitle-blog" class="pt-4px playfair-display-bold text-24px text-#efece8 text-center">Soluções Legais Inteligentes.</p>
+    </div>
+    <div>
+      <BlogComponnent client:load />
+    </div>
+    <div class="flex justify-center pt-8">
+      <p id="text-blog" class="playfair-display-bold text-18px text-#efece8 text-center">Informações importantes e atualizadas sobre Nacionalidade Portuguesa, Vistos de <br> Residência, Regularização de Imigrantes em território Português e Direito Imobiliário.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+import { blogData } from '@content/data.js';
+
+let currentLanguage = 'Portuguese'; // Define o idioma inicial
+
+ function updateBlog() {
+  const lang = currentLanguage;
+
+  // Atualiza os elementos HTML com base no idioma escolhido
+  document.getElementById('title-blog').innerHTML = blogData.sectionTitle[lang];
+  document.getElementById('subtitle-blog').innerText = blogData.sectionSubTitle[lang];
+  document.getElementById('text-blog').innerText = blogData.sectionText1[lang];
+ 
+}
+
+  // Função para definir o idioma
+  function setLanguage(lang) {
+    currentLanguage = lang;
+    updateBlog();
+  }
+
+// Aguarda o DOM estar completamente carregado antes de executar o script
+document.addEventListener('DOMContentLoaded', () => {
+  // Adiciona eventos para troca de idioma
+  document.querySelector('.fi-us')?.addEventListener('click', () => setLanguage('Ingles'));
+  document.querySelector('.fi-br')?.addEventListener('click', () => setLanguage('Portuguese'));
+
+});
+</script>

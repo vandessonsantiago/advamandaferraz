@@ -1,0 +1,201 @@
+---
+import perfil from "@images/amanda-instagram.jpg"
+import perfil2 from "@images/perfil-mariana.jpg"
+import video from "../../videos/video-mentoria_new.mp4"
+---
+
+<style>
+.text-titles {
+  color: #a57c59;
+}
+.text-base {
+  color: #675f5e;
+  text-wrap: wrap;
+}
+
+.text-subtitle {
+  color: #6c7c77;
+}
+
+</style>
+
+<div class="px-2 tablet:p-100px h-full w-full flex justify-center items-center">
+  <div class="w-full">
+    <div class="w-full pt-8 tablet:py-0">
+      <h1 id="section-title-mentoria" class="text-titles playfair-display-bold antialiased leading-12 text-28px desktop:text-4xl text-center">Turma II: Fortaleça Sua Carreira com <br> Quem Entende do Assunto!</h1>
+    </div>
+    <div class="flex flex-col justify-center items-center py-12">
+      <div class="w-full max-w-1200px h-full tablet:flex tablet:flex-row-reverse justify-between items-center gap-8 pb-24">
+        
+        <div class="min-w-[376px] flex flex-col items-center justify-center"> 
+          <div class="w-full h-full rounded-lg max-w-[380px] bg-white shadow-2xl">
+            <div class="p-3 flex gap-1 border-black border-b-2">
+              <div class="i-bi:circle-fill w-14px h-14px" style="color: #e11d48;"></div>
+              <div class="i-bi:circle-fill w-14px h-14px" style="color: #f59e0b;"></div>
+              <div class="i-bi:circle-fill w-14px h-14px" style="color: #22c55e;"></div>
+            </div>
+            <div class="p-2">
+              <div class="">
+                <!-- Video player -->
+                <video id="myVideo" width="100%" height="100%" controls>
+                  <source src={video} type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+          <div class="my-4 p-2 w-full flex flex-col items-start border-black border-2">
+            <div class="w-full">
+              <h2 id="t20" class="text-subtitle text-xl text-center">Investimento</h2>
+            </div>
+            <div class="flex flex-col justify-center items-center w-full">
+              <p class="text-base">€850,00</p>
+              <p class="text-base">R$5.300,00</p>
+              <p id="t21" class="text-base">À vista ou em até 6x.</p>
+              <p id="t22" class="text-base py-2">Início: 17/09/2024</p>
+            </div>
+          </div>
+          <div class="py-4">
+            <button id="button-mentoria" class="bg-#6c7c77 py-4 px-6 text-white rounded-md cursor-pointer">INSCRIÇÕES ABERTAS</button>
+          </div>
+          <p id="t24" class="max-w-380px text-base text-xs">Exclusivo para Advogados(as) inscritos na Ordem dos Advogados de Portugal, que querem aperfeiçoar sua prática jurídica.</p>
+        </div>
+
+        <div class="py-4 px-2">
+          <div class="w-full flex flex-col justify-center">
+            <div>
+            <h2 id="t1" class="text-titles playfair-display-bold antialiased text-[22px]">MENTORIA ADVOGADAS EM AÇÃO</h2>
+            <p id="t2" class="text-base text-center tablet:text-start">Aprenda a prática jurídica em imigração e nacionalidade portuguesa com duas especialistas.</p>
+          </div>
+            <div>
+              <h2 id="t3" class="text-titles playfair-display-bold antialiased text-[22px] py-4 text-center tablet:text-start">O Que Você vai Aprender?</h2>
+              <div class="tablet:flex gap-4">
+                <div class="w-full max-w-350px">
+                  <div>
+                    <div class="flex items-center justify-center tablet:justify-start py-2">
+                      <div class="relative w-10 h-10">
+                        <img class="w-full h-full rounded-full" src={perfil2.src} alt="Profile Image">
+                        <div class="absolute inset-0 rounded-full ring-4 ring-pink-500/50"></div>
+                      </div>
+                      <div id="toast-1-name" class="ml-2 text-xs font-bold">marianatozoni.adv</div>
+                      <div class="i-ic:baseline-verified w-4 h-4" style="color: #0095f6;"></div>
+                    </div>
+                      <h2 id="t4" class="text-subtitle playfair-display-bold antialiased text-[16px] text-center tablet:text-start">Vistos e Regularização:</h2>
+                    <div class="max-w-350px flex flex-col justify-center items-center tablet:justify-start tablet:items-start">
+                      <p id="t5" class="text-14px text-center tablet:text-start">Captação de clientes e redes sociais</p>
+                      <p id="t6" class="text-14px text-center tablet:text-start">Vistos D7, Nômade Digital e Acompanhamento Familiar</p>
+                      <p id="t7" class="text-14px text-center tablet:text-start">Regularização sem visto e proteção de direitos no tribunal</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-full max-w-350px">
+                  <div>
+                    <div class="flex items-center justify-center tablet:justify-start py-2">
+                      <div class="relative w-10 h-10">
+                        <img class="w-full h-full rounded-full" src={perfil.src} alt="Profile Image">
+                        <div class="absolute inset-0 rounded-full ring-4 ring-pink-500/50"></div>
+                      </div>
+                      <div id="toast-1-name" class="ml-2 text-xs font-bold">advogadaamandaferraz</div>
+                      <div class="i-ic:baseline-verified w-4 h-4" style="color: #0095f6;"></div>
+                    </div>
+                    <h2 id="t8" class="text-subtitle playfair-display-bold antialiased text-[16px] text-center tablet:text-start">Nacionalidade Portuguesa:</h2>
+                  </div>
+                  <div class="max-w-350px">
+                    <p id="t9" class="text-14px text-center tablet:text-start">Legislação e processos comuns</p>
+                    <p id="t10" class="text-14px text-center tablet:text-start">Transcrição de casamento, nacionalidade por atribuição e aquisição</p>
+                  </div>
+                </div>
+              </div>
+            <div />
+          </div>
+          </div>
+          <div class="flex flex-col items-center tablet:items-start py-4">
+            <div>
+              <h2 id="t11" class="text-titles playfair-display-bold antialiased text-[22px] text-center tablet:text-start">Como Funciona?</h2>
+            </div>
+            <div>
+              <div class="text-center tablet:text-start">
+                <h2 id="t12">10 encontros ao vivo</h2>
+                <p id="t13" class="text-base">Duas vezes por semana, com gravação disponível.</p>
+              </div>
+              <div class="text-center tablet:text-start">
+                <h2 id="t14" >Materiais completos</h2>
+                <p id="t15" class="text-base">Modelos de contratos, minutas e propostas.</p>
+              </div>
+              <div class="text-center tablet:text-start">
+                <h2 id="t16">Grupo exclusivo no WhatsApp</h2>
+                <p id="t17" class="text-base">Debate de casos práticos e troca de conhecimentos.</p>
+              </div>
+            </div>
+          </div>
+          <div class="max-w-480px">
+            <h2 id="t18" class="text-titles playfair-display-bold antialiased text-[22px] text-center tablet:text-start">Qual o Resultado Esperado?</h2>
+            <p id="t19" class="text-base text-center tablet:text-start">Atue com segurança e confiança em processos de imigração e nacionalidade, elevando sua carreira jurídica.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+</div>
+
+<script>
+const buttonMentoria = document.getElementById('button-mentoria');
+
+// Função para abrir o link do Formulário ao clicar no botão
+buttonMentoria?.addEventListener('click', function() {
+  window.open('https://docs.google.com/forms/d/e/1FAIpQLSeHTmkwpaBiLQ26ZVHMdAFweBwOIOk3_N6ow4lvGqxk8szRrg/viewform', '_blank');
+});
+
+import { mentoriaData } from '@content/data.js';
+
+let currentLanguage = 'Portuguese'; // Define o idioma inicial
+
+// Função para atualizar o conteúdo
+function updateContent() {
+  const lang = currentLanguage;
+
+  // Atualiza os elementos HTML com base no idioma escolhido
+  document.getElementById('section-title-mentoria').innerHTML = mentoriaData.sectionTitle[lang];
+  document.getElementById('t1').innerText = mentoriaData.content[lang].text1;
+  document.getElementById('t2').innerText = mentoriaData.content[lang].text2;
+  document.getElementById('t3').innerText = mentoriaData.content[lang].text3;
+  document.getElementById('t4').innerText = mentoriaData.content[lang].text4Mariana;
+  document.getElementById('t5').innerText = mentoriaData.content[lang].text5Mariana;
+  document.getElementById('t6').innerText = mentoriaData.content[lang].text6Mariana;
+  document.getElementById('t7').innerText = mentoriaData.content[lang].text7Mariana;
+  document.getElementById('t8').innerText = mentoriaData.content[lang].text8Amanda;
+  document.getElementById('t9').innerText = mentoriaData.content[lang].text9Amanda;
+  document.getElementById('t10').innerText = mentoriaData.content[lang].text10Amanda;
+  document.getElementById('t11').innerText = mentoriaData.content[lang].text11;
+  document.getElementById('t12').innerText = mentoriaData.content[lang].text12;
+  document.getElementById('t13').innerText = mentoriaData.content[lang].text13;
+  document.getElementById('t14').innerText = mentoriaData.content[lang].text14;
+  document.getElementById('t15').innerText = mentoriaData.content[lang].text15;
+  document.getElementById('t16').innerText = mentoriaData.content[lang].text16;
+  document.getElementById('t17').innerText = mentoriaData.content[lang].text17;
+  document.getElementById('t18').innerText = mentoriaData.content[lang].text18;
+  document.getElementById('t19').innerText = mentoriaData.content[lang].text19;
+  document.getElementById('t21').innerText = mentoriaData.content[lang].text21;
+  document.getElementById('t20').innerText = mentoriaData.content[lang].text20;
+  document.getElementById('t22').innerText = mentoriaData.content[lang].text22;
+  document.getElementById('button-mentoria').innerText = mentoriaData.content[lang].text23Btn;
+  document.getElementById('t24').innerText = mentoriaData.content[lang].text24;
+}
+
+// Função para definir o idioma
+function setLanguage(lang) {
+  currentLanguage = lang;
+  updateContent();
+}
+
+// Aguarda o DOM estar completamente carregado antes de executar o script
+document.addEventListener('DOMContentLoaded', () => {
+  // Adiciona eventos para troca de idioma
+  document.querySelector('.fi-us')?.addEventListener('click', () => setLanguage('Ingles'));
+  document.querySelector('.fi-br')?.addEventListener('click', () => setLanguage('Portuguese'));
+
+  // Inicializa o conteúdo com o idioma padrão
+  updateContent();
+});
+</script>
