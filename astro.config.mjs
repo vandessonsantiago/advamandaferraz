@@ -8,18 +8,24 @@ import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
+  output: "hybrid",
   image: {
-    domains: ["astro.build"]
+    domains: ["astro.build"],
   },
   devToolbar: {
-    enabled: false
+    enabled: false,
   },
-  integrations: [UnoCSS({
-    injectReset: true
-  }), react(), vue(), alpinejs()],
+  integrations: [
+    UnoCSS({
+      injectReset: true,
+    }),
+    react(),
+    vue(),
+    alpinejs(),
+  ],
   vite: {
-    plugins: [react()]
+    plugins: [react()],
   },
-  adapter: vercel()
+  adapter: vercel(),
 });
+
