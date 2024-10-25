@@ -5,6 +5,7 @@ import vue from "@astrojs/vue";
 import alpinejs from "@astrojs/alpinejs";
 
 import vercel from "@astrojs/vercel/serverless";
+import vercelServerless from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
@@ -26,6 +27,6 @@ export default defineConfig({
   vite: {
     plugins: [react()],
   },
-  adapter: vercel(),
+  adapter: vercelServerless(),
 });
 
